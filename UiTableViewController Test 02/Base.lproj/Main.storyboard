@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -73,6 +74,7 @@
                                     <outlet property="foodStoreCellImage" destination="uLF-IA-CGa" id="4gR-iG-Cae"/>
                                     <outlet property="foodStoreCellName" destination="EP0-U3-IPt" id="Qog-ZS-x5j"/>
                                     <outlet property="foodStoreCellTel" destination="seM-7D-bcq" id="gJl-6Z-ZZF"/>
+                                    <segue destination="dHU-1H-QxZ" kind="show" identifier="showDetail" id="W7n-Jh-XaA"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -81,22 +83,40 @@
                             <outlet property="delegate" destination="cFp-Sf-CKj" id="JhQ-2C-NdH"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="fHx-4e-WvK">
-                        <barButtonItem key="leftBarButtonItem" systemItem="edit" id="hMO-6k-S8t">
-                            <connections>
-                                <action selector="editable:" destination="cFp-Sf-CKj" id="0DI-JP-PiN"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="AVy-1S-uzS">
-                            <connections>
-                                <action selector="nonEditable:" destination="cFp-Sf-CKj" id="yte-Wf-eev"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="fHx-4e-WvK"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ppm-sE-6qu" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="960.79999999999995" y="59.820089955022496"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="xx9-zj-SKD">
+            <objects>
+                <viewController id="dHU-1H-QxZ" customClass="DetailViewController" customModule="UiTableViewController_Test_02" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vgw-Oh-TJ6">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="01" translatesAutoresizingMaskIntoConstraints="NO" id="Tzz-Vc-BzB">
+                                <rect key="frame" x="0.0" y="64" width="375" height="291"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Tzz-Vc-BzB" firstAttribute="trailing" secondItem="cjX-ER-KhF" secondAttribute="trailing" id="J8w-GJ-Ruq"/>
+                            <constraint firstItem="Tzz-Vc-BzB" firstAttribute="top" secondItem="cjX-ER-KhF" secondAttribute="top" id="Zzr-4Y-Cpf"/>
+                            <constraint firstItem="cjX-ER-KhF" firstAttribute="bottom" secondItem="Tzz-Vc-BzB" secondAttribute="bottom" constant="312" id="fxD-eb-BcM"/>
+                            <constraint firstItem="Tzz-Vc-BzB" firstAttribute="leading" secondItem="cjX-ER-KhF" secondAttribute="leading" id="iMG-5a-ZLT"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="cjX-ER-KhF"/>
+                    </view>
+                    <connections>
+                        <outlet property="cellImageView" destination="Tzz-Vc-BzB" id="d2T-og-WUt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5a7-GD-tZH" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1700" y="59.820089955022496"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="STE-sq-WCd">
@@ -117,4 +137,7 @@
             <point key="canvasLocation" x="192" y="60.26986506746627"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="01" width="800" height="800"/>
+    </resources>
 </document>

@@ -22,14 +22,14 @@ class MyTableViewController: UITableViewController {
     }
     
     
-    @IBAction func editable(_ sender: Any) {
-        
-        tableView.isEditing = true
-    }
-    
-    @IBAction func nonEditable(_ sender: Any) {
-        tableView.isEditing = false
-    }
+//    @IBAction func editable(_ sender: Any) {
+//        
+//        tableView.isEditing = true
+//    }
+//    
+//    @IBAction func nonEditable(_ sender: Any) {
+//        tableView.isEditing = false
+//    }
     
     
     // MARK: - Table view data source
@@ -84,48 +84,48 @@ class MyTableViewController: UITableViewController {
 
     
     // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return false
-    }
-    
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the specified item to be editable.
+//        return false
+//    }
+//
 
     
     // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            //tableView.deleteRows(at: [indexPath], with: .fade)
-            
-         foodStoreNames.remove(at: indexPath.row)
-            foodStoreAddress.remove(at: indexPath.row)
-            foodStoreTel.remove(at: indexPath.row)
-            foodStoreThumbnail.remove(at: indexPath.row)
-            
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            //tableView.reloadData()
-
-        }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            // Delete the row from the data source
+//            //tableView.deleteRows(at: [indexPath], with: .fade)
+//            
+//         foodStoreNames.remove(at: indexPath.row)
+//            foodStoreAddress.remove(at: indexPath.row)
+//            foodStoreTel.remove(at: indexPath.row)
+//            foodStoreThumbnail.remove(at: indexPath.row)
+//            
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            //tableView.reloadData()
+//
+//        }
 //        } else if editingStyle == .insert {
 //            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
 //        }
-    }
+   // }
     
 
     
     // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-        
-        let tmp1 = foodStoreNames[to.row]
-            foodStoreNames[to.row] = foodStoreNames[fromIndexPath.row]
-            foodStoreNames[fromIndexPath.row] = tmp1
-        
-        let tmp2 = foodStoreThumbnail[to.row]
-        foodStoreThumbnail[to.row] = foodStoreThumbnail[fromIndexPath.row]
-        foodStoreThumbnail[fromIndexPath.row] = tmp2
-        
-            tableView.reloadData()
-    }
+//    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
+//
+//        let tmp1 = foodStoreNames[to.row]
+//            foodStoreNames[to.row] = foodStoreNames[fromIndexPath.row]
+//            foodStoreNames[fromIndexPath.row] = tmp1
+//
+//        let tmp2 = foodStoreThumbnail[to.row]
+//        foodStoreThumbnail[to.row] = foodStoreThumbnail[fromIndexPath.row]
+//        foodStoreThumbnail[fromIndexPath.row] = tmp2
+//
+//            tableView.reloadData()
+//    }
     
 
     /*
@@ -136,14 +136,24 @@ class MyTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        if segue.identifier == "showDetail" {
+            if let indexPath =  tableView.indexPathForSelectedRow {
+                let destinationController = segue.destination as! DetailViewController
+                // 이름 넘기기
+                destinationController.title = foodStoreNames[indexPath.row]
+                
+                // 이미지 넘기기
+                destinationController.cellImage = foodStoreThumbnail[indexPath.row]
+                
+                
+            }
+        }
     }
-    */
-
 }

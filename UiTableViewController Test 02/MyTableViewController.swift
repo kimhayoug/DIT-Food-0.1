@@ -18,7 +18,19 @@ class MyTableViewController: UITableViewController {
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
         
         self.title = "DIT 배달통"
+        //tableView.isEditing = true
     }
+    
+    
+    @IBAction func editable(_ sender: Any) {
+        
+        tableView.isEditing = true
+    }
+    
+    @IBAction func nonEditable(_ sender: Any) {
+        tableView.isEditing = false
+    }
+    
     
     // MARK: - Table view data source
 
@@ -51,6 +63,7 @@ class MyTableViewController: UITableViewController {
         print(foodStoreNames[indexPath.row])
         print(foodStoreTel[indexPath.row])
         
+        /*
         //전화걸기 alert
         let optionMenu = UIAlertController(title: "전화걸기 : " + foodStoreNames[indexPath.row], message: foodStoreTel[indexPath.row], preferredStyle: .actionSheet)
         let callAction = UIAlertAction(title: "전화를 거시겠습니까?", style: .default) {
@@ -65,35 +78,55 @@ class MyTableViewController: UITableViewController {
         optionMenu.addAction(callAction)
         optionMenu.addAction(cancelAction)
         present(optionMenu, animated: true, completion: nil)
+        */
     }
     
 
-    /*
+    
     // Override to support conditional editing of the table view.
     override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         // Return false if you do not want the specified item to be editable.
-        return true
+        return false
     }
-    */
+    
 
-    /*
+    
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             // Delete the row from the data source
+            //tableView.deleteRows(at: [indexPath], with: .fade)
+            
+         foodStoreNames.remove(at: indexPath.row)
+            foodStoreAddress.remove(at: indexPath.row)
+            foodStoreTel.remove(at: indexPath.row)
+            foodStoreThumbnail.remove(at: indexPath.row)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
+            //tableView.reloadData()
 
-    /*
+        }
+//        } else if editingStyle == .insert {
+//            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//        }
+    }
+    
+
+    
     // Override to support rearranging the table view.
     override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+        
+        let tmp1 = foodStoreNames[to.row]
+            foodStoreNames[to.row] = foodStoreNames[fromIndexPath.row]
+            foodStoreNames[fromIndexPath.row] = tmp1
+        
+        let tmp2 = foodStoreThumbnail[to.row]
+        foodStoreThumbnail[to.row] = foodStoreThumbnail[fromIndexPath.row]
+        foodStoreThumbnail[fromIndexPath.row] = tmp2
+        
+            tableView.reloadData()
     }
-    */
+    
 
     /*
     // Override to support conditional rearranging of the table view.

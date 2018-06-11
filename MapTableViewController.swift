@@ -36,14 +36,13 @@ class MapTableViewController: UITableViewController {
                 }
                 if let myplacemarks = Placemarks{
                     let mylacemarks = myplacemarks[0]
-                    let loc = myPlacemarks.location?.coordinate
+                    let loc = mylacemarks.location?.coordinate
                     let anno = MKPointAnnotation()
                     anno.coordinate = loc!
-                    anno.title = foodStoreNames[self.annotion]
+                    anno.title = names[self.count]
                     self.count = self.count + 1
                     anno.subtitle = addr
-                    self.annotations.append(anno)
-                    self.myMapView.addAnnotation(self.annotion as! MKAnnotation)
+                    self.tatakMapView.addAnnotation(anno)
                 }else{
                     print("placemarks nil 발생")
                 }
